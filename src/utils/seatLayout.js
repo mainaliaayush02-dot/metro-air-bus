@@ -1,0 +1,31 @@
+export const SEAT_LAYOUT_CONFIG = {
+  id: 'metro-49-vip',
+  totalSeats: 40,
+  rows: [
+    { id: 'driver', type: 'driver', left: [], right: ['DRIVER'] },
+    { id: 'row-1', type: 'special', left: ['S1'], right: ['BKA', 'BKHA'] },
+    { id: 'row-2', type: 'regular', left: ['AKA', 'AKHA'], right: ['BGA', 'BGHA'] },
+    { id: 'row-3', type: 'regular', left: ['AGA', 'AGHA'], right: ['B1', 'B2'] },
+    { id: 'row-4', type: 'regular', left: ['A1', 'A2'], right: ['B3', 'B4'] },
+    { id: 'row-5', type: 'regular', left: ['A3', 'A4'], right: ['B5', 'B6'] },
+    { id: 'row-6', type: 'regular', left: ['A5', 'A6'], right: ['B7', 'B8'] },
+    { id: 'row-7', type: 'regular', left: ['A7', 'A8'], right: ['B9', 'B10'] },
+    { id: 'row-8', type: 'regular', left: ['A9', 'A10'], right: ['B11', 'B12'] },
+    { id: 'row-9', type: 'regular', left: ['A11', 'A12'], right: ['B13', 'B14'] },
+    { id: 'row-10', type: 'last', left: ['A13', 'A14', 'A15'], right: ['B15', 'B16'] },
+  ],
+  // All bookable seat IDs (excludes DRIVER)
+  allSeats: [
+    'S1',
+    'AKA', 'AKHA', 'BKA', 'BKHA',
+    'AGA', 'AGHA', 'BGA', 'BGHA',
+    'B1', 'B2',
+    'A1', 'A2', 'B3', 'B4',
+    'A3', 'A4', 'B5', 'B6',
+    'A5', 'A6', 'B7', 'B8',
+    'A7', 'A8', 'B9', 'B10',
+    'A9', 'A10', 'B11', 'B12',
+    'A11', 'A12', 'B13', 'B14',
+    'A13', 'A14', 'A15', 'B15', 'B16',
+  ],
+}

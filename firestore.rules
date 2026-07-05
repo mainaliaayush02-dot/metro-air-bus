@@ -1,0 +1,96 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function role() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isOperator() {
+      return isSignedIn() && role() in ['operator', 'superadmin'];
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && role() == 'superadmin';
+    }
+
+    // users
+    match /users/{userId} {
+      allow read: if isSignedIn() && (request.auth.uid == userId || isOperator());
+      allow create: if isSignedIn() &&
+                    (
+                      (request.auth.uid == userId && request.resource.data.role == 'passenger')
+                      || isSuperAdmin()
+                    );
+      allow update: if isSignedIn() && (request.auth.uid == userId || isSuperAdmin());
+      allow delete: if isSuperAdmin();
+    }
+
+    // routes
+    match /routes/{routeId} {
+      allow read: if true;
+      allow write: if isOperator();
+    }
+
+    // buses
+    match /buses/{busId} {
+      allow read: if true;
+      allow write: if isOperator();
+    }
+
+    // schedules
+    match /schedules/{scheduleId} {
+      allow read: if true;
+      allow create, delete: if isOperator();
+      allow update: if isOperator() ||
+                    (
+                      // passengers may only adjust the live availableSeats counter
+                      // (booking decrements it, cancellation increments it back)
+                      isSignedIn() &&
+                      request.resource.data.diff(resource.data).affectedKeys().hasOnly(['availableSeats']) &&
+                      request.resource.data.availableSeats >= 0
+                    );
+
+      // seats subcollection
+      match /seats/{seatId} {
+        allow read: if true;
+        allow update: if isSignedIn() &&
+                      (
+                        // passenger booking an available seat for themselves
+                        (resource.data.status == 'available' &&
+                         request.resource.data.status == 'booked' &&
+                         request.resource.data.bookedBy == request.auth.uid)
+                        // passenger releasing their own booked seat (cancellation)
+                        || (resource.data.status == 'booked' &&
+                            resource.data.bookedBy == request.auth.uid &&
+                            request.resource.data.status == 'available' &&
+                            request.resource.data.bookedBy == null)
+                        || isOperator()
+                      );
+        allow create, delete: if isOperator();
+      }
+    }
+
+    // bookings
+    match /bookings/{bookingId} {
+      allow read: if isSignedIn() &&
+                  (resource.data.passengerId == request.auth.uid || isOperator());
+      allow create: if isSignedIn() &&
+                    (request.resource.data.passengerId == request.auth.uid || isOperator());
+      allow update: if isSignedIn() &&
+                    (resource.data.passengerId == request.auth.uid || isOperator());
+      allow delete: if isSuperAdmin();
+    }
+
+    // promo codes
+    match /promoCodes/{promoCodeId} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+  }
+}
