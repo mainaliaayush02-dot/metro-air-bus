@@ -167,6 +167,7 @@ export default function ManageSchedules() {
         description="Manage Metro Air Bus schedules."
         keywords="Metro Air Bus admin schedules"
         canonical={`${COMPANY_CONFIG.domain}/admin/schedules`}
+        noindex
       />
 
       <div className="flex items-center justify-between mb-4">

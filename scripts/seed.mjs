@@ -47,9 +47,9 @@ const departureDateBS = new NepaliDate(tomorrow).format('YYYY-MM-DD')
 // 1. Route
 const routeRef = await addDoc(collection(db, 'routes'), {
   from: 'Kathmandu',
-  to: 'Kakadvitta',
+  to: 'Kakarbhitta',
   fromCode: 'KTM',
-  toCode: 'KKV',
+  toCode: 'KKB',
   boardingPoints: [
     { name: 'Gongabu Bus Park', time: '03:00 PM' },
     { name: 'Balaju', time: '07:15 AM' },
@@ -88,7 +88,7 @@ const scheduleRef = await addDoc(collection(db, 'schedules'), {
   busName: 'New Metro VIP Sofa',
   busNumber: 'BA 1 KHA 1234',
   from: 'Kathmandu',
-  to: 'Kakadvitta',
+  to: 'Kakarbhitta',
   departureDateAD,
   departureDateBS,
   departureTime: '03:00 PM',

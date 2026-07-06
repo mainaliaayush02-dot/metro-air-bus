@@ -60,6 +60,7 @@ export default function AdminDashboard() {
         description="Metro Air Bus admin dashboard."
         keywords="Metro Air Bus admin"
         canonical={`${COMPANY_CONFIG.domain}/admin`}
+        noindex
       />
 
       <div className="grid sm:grid-cols-3 gap-4 mb-8">

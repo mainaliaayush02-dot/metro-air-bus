@@ -73,6 +73,7 @@ export default function ManagePromoCodes() {
         description="Manage Metro Air Bus promo codes."
         keywords="Metro Air Bus superadmin promo codes"
         canonical={`${COMPANY_CONFIG.domain}/superadmin/promo-codes`}
+        noindex
       />
 
       <div className="flex justify-end mb-4">

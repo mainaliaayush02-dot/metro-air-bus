@@ -60,6 +60,7 @@ export default function SeatSelection() {
         description={`Choose your seats for the ${schedule.from} to ${schedule.to} VIP Sofa bus.`}
         keywords="Metro Air Bus seat selection, bus seat booking Nepal"
         canonical={`${COMPANY_CONFIG.domain}/seats/${scheduleId}`}
+        noindex
       />
 
       <div className="mb-6">

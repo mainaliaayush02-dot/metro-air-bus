@@ -72,6 +72,7 @@ export default function ManageOperators() {
         description="Manage Metro Air Bus operator accounts."
         keywords="Metro Air Bus superadmin operators"
         canonical={`${COMPANY_CONFIG.domain}/superadmin/operators`}
+        noindex
       />
 
       <div className="flex justify-end mb-4">

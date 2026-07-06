@@ -8,7 +8,7 @@ export default function Footer() {
         <div>
           <h3 className="text-brand-yellow font-extrabold text-lg mb-2">METRO AIR BUS</h3>
           <p className="text-sm text-gray-400">{COMPANY_CONFIG.brand}</p>
-          <p className="text-sm text-gray-400 mt-2">Kathmandu ↔ Kakadvitta<br />Comfortable. On Time. Every Time.</p>
+          <p className="text-sm text-gray-400 mt-2">Kathmandu ↔ Kakarbhitta<br />Comfortable. On Time. Every Time.</p>
         </div>
 
         <div>
@@ -26,8 +26,8 @@ export default function Footer() {
 
         <div>
           <h4 className="text-white font-semibold mb-2">Route</h4>
-          <p className="text-sm">Kathmandu → Kakadvitta</p>
-          <p className="text-sm">Kakadvitta → Kathmandu</p>
+          <p className="text-sm">Kathmandu → Kakarbhitta</p>
+          <p className="text-sm">Kakarbhitta → Kathmandu</p>
           <p className="text-sm text-gray-400 mt-1">Daily departure 03:00 PM</p>
         </div>
       </div>

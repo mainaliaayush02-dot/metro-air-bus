@@ -56,6 +56,7 @@ export default function TicketView() {
         description="Your Metro Air Bus e-ticket."
         keywords="Metro Air Bus ticket"
         canonical={`${COMPANY_CONFIG.domain}/ticket/${bookingId}`}
+        noindex
       />
 
       <div className="flex items-center justify-between mb-4 no-print">

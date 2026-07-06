@@ -61,6 +61,7 @@ export default function Login() {
         description="Login to your Metro Air Bus account to book and manage your VIP Sofa bus tickets."
         keywords="Metro Air Bus login, bus ticket account Nepal"
         canonical={`${COMPANY_CONFIG.domain}/login`}
+        noindex
       />
       <div className="w-full max-w-md bg-white rounded-xl shadow-md border border-gray-200 p-8">
         <h1 className="text-2xl font-extrabold text-brand-black mb-1">Welcome Back</h1>

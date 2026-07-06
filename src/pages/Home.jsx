@@ -25,15 +25,15 @@ export default function Home() {
   return (
     <div>
       <SeoHead
-        title="Metro Air Bus | Kathmandu to Kakadvitta VIP Sofa Bus Tickets"
-        description="Book Metro Air Bus tickets online. Kathmandu to Kakadvitta and Kakadvitta to Kathmandu VIP Sofa bus. Comfortable recliner seats. Easy online booking."
-        keywords="Kathmandu to Kakadvitta bus, Kakadvitta to Kathmandu bus, Metro Air Bus ticket, VIP sofa bus Nepal, online bus booking Nepal"
+        title="Metro Air Bus | Kathmandu to Kakarbhitta VIP Sofa Bus Tickets"
+        description="Book Metro Air Bus tickets online. Kathmandu to Kakarbhitta and Kakarbhitta to Kathmandu VIP Sofa bus. Comfortable recliner seats. Easy online booking."
+        keywords="Kathmandu to Kakarbhitta bus, Kakarbhitta to Kathmandu bus, Metro Air Bus ticket, VIP sofa bus Nepal, online bus booking Nepal"
         canonical={COMPANY_CONFIG.domain}
         jsonLd={{
           '@context': 'https://schema.org',
-          '@type': 'BusOrCoach',
+          '@type': 'TravelAgency',
           name: 'Metro Air Bus',
-          description: 'VIP Sofa Bus Service from Kathmandu to Kakadvitta',
+          description: 'VIP Sofa Bus Service from Kathmandu to Kakarbhitta',
           url: COMPANY_CONFIG.domain,
           telephone: '+977-014981375',
           address: {
@@ -42,11 +42,19 @@ export default function Home() {
             addressLocality: 'Kathmandu',
             addressCountry: 'NP',
           },
-          areaServed: ['Kathmandu', 'Kakadvitta'],
-          offers: {
+          areaServed: ['Kathmandu', 'Kakarbhitta'],
+          makesOffer: {
             '@type': 'Offer',
             priceCurrency: 'NPR',
             price: '2200',
+            itemOffered: {
+              '@type': 'BusTrip',
+              name: 'Kathmandu to Kakarbhitta VIP Sofa Bus',
+              provider: { '@type': 'Organization', name: 'Metro Air Bus' },
+              departureBusStop: { '@type': 'BusStop', name: 'Gongabu Bus Park, Kathmandu' },
+              arrivalBusStop: { '@type': 'BusStop', name: 'Kakarbhitta' },
+              departureTime: '15:00',
+            },
           },
         }}
       />
@@ -62,7 +70,7 @@ export default function Home() {
               Nepal ko Premium VIP Sofa Bus
             </p>
             <p className="mt-1 text-brand-black/70">
-              Kathmandu ↔ Kakadvitta | Comfortable. On Time. Every Time.
+              Kathmandu ↔ Kakarbhitta | Comfortable. On Time. Every Time.
             </p>
           </div>
 
@@ -114,7 +122,7 @@ export default function Home() {
               Sink into plush maroon sofa-style recliners with individual reading lights,
               personal fans, and curtained windows. Every Metro Air Bus VIP Sofa seat is
               designed for a relaxed, premium overnight journey between Kathmandu and
-              Kakadvitta.
+              Kakarbhitta.
             </p>
           </div>
         </div>
@@ -130,7 +138,7 @@ export default function Home() {
             <div className="flex items-center justify-between text-lg font-bold text-brand-black">
               <span>Kathmandu</span>
               <span className="text-brand-orange">→</span>
-              <span>Kakadvitta</span>
+              <span>Kakarbhitta</span>
             </div>
             <div className="mt-4 grid grid-cols-3 gap-4 text-center text-sm">
               <div>
@@ -153,20 +161,20 @@ export default function Home() {
       {/* SEO content */}
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h2 className="text-2xl font-extrabold text-brand-black mb-3">
-          Kathmandu to Kakadvitta Bus Booking
+          Kathmandu to Kakarbhitta Bus Booking
         </h2>
         <p className="text-gray-600 leading-relaxed">
           Metro Air Bus operates daily VIP Sofa bus service from Kathmandu (Gongabu Bus Park)
-          to Kakadvitta. Book your Kathmandu to Kakadvitta bus ticket online and get instant
+          to Kakarbhitta. Book your Kathmandu to Kakarbhitta bus ticket online and get instant
           e-ticket confirmation. Our buses depart daily at 3:00 PM from Gongabu Bus Park.
         </p>
 
         <h2 className="text-2xl font-extrabold text-brand-black mt-8 mb-3">
-          Kakadvitta to Kathmandu Bus
+          Kakarbhitta to Kathmandu Bus
         </h2>
         <p className="text-gray-600 leading-relaxed">
-          Metro Air Bus also operates a daily return VIP Sofa bus service from Kakadvitta to
-          Kathmandu. Book your Kakadvitta to Kathmandu bus ticket online in advance to secure
+          Metro Air Bus also operates a daily return VIP Sofa bus service from Kakarbhitta to
+          Kathmandu. Book your Kakarbhitta to Kathmandu bus ticket online in advance to secure
           your preferred recliner seat and enjoy a comfortable journey back to the capital.
         </p>
       </section>

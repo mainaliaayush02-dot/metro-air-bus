@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { adToBS } from '../utils/adToBs'
 import Button from './ui/Button'
 
-const CITIES = ['Kathmandu', 'Kakadvitta']
+const CITIES = ['Kathmandu', 'Kakarbhitta']
 
 function tomorrowAD() {
   const d = new Date()
@@ -14,7 +14,7 @@ function tomorrowAD() {
 export default function SearchForm({ initialFrom, initialTo, initialDate, initialPassengers }) {
   const navigate = useNavigate()
   const [from, setFrom] = useState(initialFrom || 'Kathmandu')
-  const [to, setTo] = useState(initialTo || 'Kakadvitta')
+  const [to, setTo] = useState(initialTo || 'Kakarbhitta')
   const [date, setDate] = useState(initialDate || tomorrowAD())
   const [passengers, setPassengers] = useState(initialPassengers || 1)
 

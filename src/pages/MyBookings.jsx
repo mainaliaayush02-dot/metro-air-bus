@@ -52,6 +52,7 @@ export default function MyBookings() {
         description="View and manage your Metro Air Bus ticket bookings."
         keywords="Metro Air Bus my bookings, bus ticket history Nepal"
         canonical={`${COMPANY_CONFIG.domain}/my-bookings`}
+        noindex
       />
 
       <h1 className="text-2xl font-extrabold text-brand-black mb-6">My Bookings</h1>

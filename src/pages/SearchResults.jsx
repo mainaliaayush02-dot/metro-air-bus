@@ -10,7 +10,7 @@ import { COMPANY_CONFIG } from '../config/constants'
 export default function SearchResults() {
   const [params] = useSearchParams()
   const from = params.get('from') || 'Kathmandu'
-  const to = params.get('to') || 'Kakadvitta'
+  const to = params.get('to') || 'Kakarbhitta'
   const date = params.get('date') || ''
 
   const { schedules, loading } = useSchedules({ from, to, date })

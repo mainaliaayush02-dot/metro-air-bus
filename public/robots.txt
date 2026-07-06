@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /superadmin
+Disallow: /my-bookings
+Disallow: /ticket/
+Disallow: /booking/
+
+Sitemap: https://metroairbus.com/sitemap.xml

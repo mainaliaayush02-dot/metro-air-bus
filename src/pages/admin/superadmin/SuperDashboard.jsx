@@ -44,6 +44,7 @@ export default function SuperDashboard() {
         description="Metro Air Bus platform-wide statistics."
         keywords="Metro Air Bus superadmin"
         canonical={`${COMPANY_CONFIG.domain}/superadmin`}
+        noindex
       />
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">

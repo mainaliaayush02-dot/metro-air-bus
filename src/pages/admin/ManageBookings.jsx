@@ -85,6 +85,7 @@ export default function ManageBookings() {
         description="Manage Metro Air Bus bookings."
         keywords="Metro Air Bus admin bookings"
         canonical={`${COMPANY_CONFIG.domain}/admin/bookings`}
+        noindex
       />
 
       <div className="bg-white rounded-xl border border-gray-200 shadow-md p-4 mb-4">

@@ -29,6 +29,7 @@ export default function SeatHold() {
         description="Hold or release seats for a schedule."
         keywords="Metro Air Bus admin seat hold"
         canonical={`${COMPANY_CONFIG.domain}/admin/seat-hold/${scheduleId}`}
+        noindex
       />
 
       {loading ? (

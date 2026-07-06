@@ -112,6 +112,7 @@ export default function ManageRoutes() {
         description="Manage Metro Air Bus routes."
         keywords="Metro Air Bus admin routes"
         canonical={`${COMPANY_CONFIG.domain}/admin/routes`}
+        noindex
       />
 
       <div className="flex justify-end mb-4">

@@ -54,9 +54,10 @@ export default function Register() {
     <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-gray-50 px-4 py-12">
       <SeoHead
         title={`Register | ${COMPANY_CONFIG.name}`}
-        description="Create a Metro Air Bus account to book VIP Sofa bus tickets online for Kathmandu to Kakadvitta and return."
+        description="Create a Metro Air Bus account to book VIP Sofa bus tickets online for Kathmandu to Kakarbhitta and return."
         keywords="Metro Air Bus register, create account, bus ticket booking Nepal"
         canonical={`${COMPANY_CONFIG.domain}/register`}
+        noindex
       />
       <div className="w-full max-w-md bg-white rounded-xl shadow-md border border-gray-200 p-8">
         <h1 className="text-2xl font-extrabold text-brand-black mb-1">Create an Account</h1>
