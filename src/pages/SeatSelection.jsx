@@ -14,6 +14,7 @@ export default function SeatSelection() {
   const navigate = useNavigate()
   const [schedule, setSchedule] = useState(null)
   const [route, setRoute] = useState(null)
+  const [bus, setBus] = useState(null)
   const [loading, setLoading] = useState(true)
   const [modalSeats, setModalSeats] = useState(null)
 
@@ -31,6 +32,13 @@ export default function SeatSelection() {
       setRoute(snap.exists() ? { id: snap.id, ...snap.data() } : null)
     })
   }, [schedule?.routeId])
+
+  useEffect(() => {
+    if (!schedule?.busId) return
+    getDoc(doc(db, 'buses', schedule.busId)).then((snap) => {
+      setBus(snap.exists() ? { id: snap.id, ...snap.data() } : null)
+    })
+  }, [schedule?.busId])
 
   function handleProceed(selectedSeats) {
     setModalSeats(selectedSeats)
@@ -70,6 +78,15 @@ export default function SeatSelection() {
         <p className="text-sm text-gray-500">
           {formatDualDate(schedule.departureDateAD)} · Departure {schedule.departureTime} · {schedule.busName}
         </p>
+        {bus?.amenities?.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-2">
+            {bus.amenities.map((a) => (
+              <span key={a} className="text-xs bg-brand-orange/10 text-brand-orange font-semibold rounded-full px-3 py-1">
+                {a}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       <SeatMap scheduleId={scheduleId} price={schedule.basePrice} onProceed={handleProceed} />
@@ -82,6 +99,7 @@ export default function SeatSelection() {
           schedule={schedule}
           seatNumbers={modalSeats}
           boardingPoints={route?.boardingPoints || []}
+          droppingPoints={route?.droppingPoints || []}
           onSuccess={handleBookingSuccess}
         />
       )}

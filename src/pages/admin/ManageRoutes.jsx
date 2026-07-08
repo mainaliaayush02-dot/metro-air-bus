@@ -17,6 +17,7 @@ const EMPTY_FORM = {
   fromCode: '',
   toCode: '',
   boardingPoints: [{ name: '', time: '' }],
+  droppingPoints: [''],
 }
 
 export default function ManageRoutes() {
@@ -51,6 +52,7 @@ export default function ManageRoutes() {
       fromCode: route.fromCode || '',
       toCode: route.toCode || '',
       boardingPoints: route.boardingPoints?.length ? route.boardingPoints : [{ name: '', time: '' }],
+      droppingPoints: route.droppingPoints?.length ? route.droppingPoints : [''],
     })
     setError('')
     setModalOpen(true)
@@ -71,6 +73,21 @@ export default function ManageRoutes() {
     setForm((f) => ({ ...f, boardingPoints: f.boardingPoints.filter((_, i) => i !== index) }))
   }
 
+  function updateDroppingPoint(index, value) {
+    setForm((f) => ({
+      ...f,
+      droppingPoints: f.droppingPoints.map((dp, i) => (i === index ? value : dp)),
+    }))
+  }
+
+  function addDroppingPoint() {
+    setForm((f) => ({ ...f, droppingPoints: [...f.droppingPoints, ''] }))
+  }
+
+  function removeDroppingPoint(index) {
+    setForm((f) => ({ ...f, droppingPoints: f.droppingPoints.filter((_, i) => i !== index) }))
+  }
+
   async function handleSubmit(e) {
     e.preventDefault()
     setError('')
@@ -78,6 +95,8 @@ export default function ManageRoutes() {
     if (!form.from.trim() || !form.to.trim()) return setError('From and To are required.')
     const boardingPoints = form.boardingPoints.filter((bp) => bp.name.trim() && bp.time.trim())
     if (boardingPoints.length === 0) return setError('Add at least one boarding point.')
+    const droppingPoints = form.droppingPoints.map((dp) => dp.trim()).filter(Boolean)
+    if (droppingPoints.length === 0) return setError('Add at least one dropping point.')
 
     setSaving(true)
     try {
@@ -87,6 +106,7 @@ export default function ManageRoutes() {
         fromCode: form.fromCode.trim(),
         toCode: form.toCode.trim(),
         boardingPoints,
+        droppingPoints,
       }
       if (editingId) {
         await updateDoc(doc(db, 'routes', editingId), payload)
@@ -138,13 +158,26 @@ export default function ManageRoutes() {
                   <p className="font-bold text-brand-black">
                     {route.from} ({route.fromCode}) → {route.to} ({route.toCode})
                   </p>
-                  <div className="flex flex-wrap gap-2 mt-2">
+                  <p className="text-xs font-semibold text-gray-400 mt-2">Boarding Points</p>
+                  <div className="flex flex-wrap gap-2 mt-1">
                     {route.boardingPoints?.map((bp) => (
                       <span key={bp.name} className="text-xs bg-gray-100 text-gray-600 rounded px-2 py-1">
                         {bp.name} — {bp.time}
                       </span>
                     ))}
                   </div>
+                  {route.droppingPoints?.length > 0 && (
+                    <>
+                      <p className="text-xs font-semibold text-gray-400 mt-2">Dropping Points</p>
+                      <div className="flex flex-wrap gap-2 mt-1">
+                        {route.droppingPoints.map((dp) => (
+                          <span key={dp} className="text-xs bg-gray-100 text-gray-600 rounded px-2 py-1">
+                            {dp}
+                          </span>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
                 <Badge variant={route.isActive ? 'success' : 'gray'}>
                   {route.isActive ? 'Active' : 'Inactive'}
@@ -226,6 +259,32 @@ export default function ManageRoutes() {
                   />
                   {form.boardingPoints.length > 1 && (
                     <button type="button" onClick={() => removeBoardingPoint(i)} className="text-gray-400 hover:text-red-600">
+                      <X size={18} />
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-sm font-medium text-gray-700">Dropping Points</label>
+              <button type="button" onClick={addDroppingPoint} className="text-xs font-semibold text-brand-orange hover:underline">
+                + Add point
+              </button>
+            </div>
+            <div className="space-y-2">
+              {form.droppingPoints.map((dp, i) => (
+                <div key={i} className="flex gap-2">
+                  <input
+                    value={dp}
+                    onChange={(e) => updateDroppingPoint(i, e.target.value)}
+                    placeholder="Name"
+                    className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow"
+                  />
+                  {form.droppingPoints.length > 1 && (
+                    <button type="button" onClick={() => removeDroppingPoint(i)} className="text-gray-400 hover:text-red-600">
                       <X size={18} />
                     </button>
                   )}

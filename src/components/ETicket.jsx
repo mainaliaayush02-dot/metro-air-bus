@@ -49,6 +49,7 @@ const ETicket = forwardRef(function ETicket({ booking, busNumber }, ref) {
         <div className="space-y-1">
           <p><span className="text-gray-500">Name:</span> {booking.passengerName}</p>
           <p><span className="text-gray-500">Boarding:</span> {booking.boardingPoint}</p>
+          <p><span className="text-gray-500">Dropping:</span> {booking.droppingPoint || '—'}</p>
           <p><span className="text-gray-500">Phone:</span> {booking.passengerPhone}</p>
           <p><span className="text-gray-500">Seat No:</span> {booking.seatNumbers?.join(', ')}</p>
         </div>

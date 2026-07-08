@@ -27,6 +27,7 @@ export async function sendBookingNotification(booking) {
         journey_date: formatDualDate(booking.journeyDateAD),
         departure_time: booking.departureTime,
         boarding_point: booking.boardingPoint,
+        dropping_point: booking.droppingPoint,
         seat_numbers: booking.seatNumbers?.join(', '),
         total_price: `Rs. ${booking.totalPrice}`,
         promo_code: booking.promoCode || 'None',

@@ -15,6 +15,7 @@ export default function PassengerDetailsModal({
   schedule,
   seatNumbers,
   boardingPoints,
+  droppingPoints,
   onSuccess,
 }) {
   const { user } = useAuth()
@@ -24,6 +25,7 @@ export default function PassengerDetailsModal({
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [boardingPoint, setBoardingPoint] = useState(boardingPoints?.[0]?.name || '')
+  const [droppingPoint, setDroppingPoint] = useState(droppingPoints?.[0] || '')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -67,6 +69,7 @@ export default function PassengerDetailsModal({
     if (!name.trim()) return setError('Full name is required.')
     if (!/^9\d{9}$/.test(phone)) return setError('Enter a valid Nepal phone number (e.g. 98xxxxxxxx).')
     if (!boardingPoint) return setError('Please select a boarding point.')
+    if (!droppingPoint) return setError('Please select a dropping point.')
 
     if (!user) {
       navigate('/login', { state: { from: location.pathname } })
@@ -82,6 +85,7 @@ export default function PassengerDetailsModal({
         passengerName: name.trim(),
         passengerPhone: phone.trim(),
         boardingPoint,
+        droppingPoint,
         uid: user.uid,
         promoCode: appliedPromo?.code || null,
         discountPerSeat: appliedPromo?.discountAmount || 0,
@@ -167,6 +171,20 @@ export default function PassengerDetailsModal({
                 <option key={bp.name} value={bp.name}>
                   {bp.name} — {bp.time}
                 </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Dropping Point</label>
+            <select
+              value={droppingPoint}
+              onChange={(e) => setDroppingPoint(e.target.value)}
+              required
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
+            >
+              {(droppingPoints || []).map((dp) => (
+                <option key={dp} value={dp}>{dp}</option>
               ))}
             </select>
           </div>
