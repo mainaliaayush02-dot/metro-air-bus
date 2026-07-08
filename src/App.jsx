@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 
 import Home from './pages/Home'
+import Contact from './pages/Contact'
 import SearchResults from './pages/SearchResults'
 import SeatSelection from './pages/SeatSelection'
 import BookingConfirm from './pages/BookingConfirm'
@@ -52,6 +53,7 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/seats/:scheduleId" element={<SeatSelection />} />
           <Route path="/login" element={<Login />} />

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Phone, MapPin } from 'lucide-react'
 import { COMPANY_CONFIG } from '../../config/constants'
 
@@ -22,6 +23,9 @@ export default function Footer() {
           <p className="flex items-center gap-2 text-sm mt-1">
             <MapPin size={14} /> {COMPANY_CONFIG.boardingPoint}
           </p>
+          <Link to="/contact" className="inline-block text-sm text-brand-yellow font-semibold hover:underline mt-2">
+            Contact Us →
+          </Link>
         </div>
 
         <div>

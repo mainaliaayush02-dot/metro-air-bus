@@ -25,6 +25,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-6 text-sm">
           <Link to="/" className="text-white hover:text-brand-yellow font-medium">Home</Link>
+          <Link to="/contact" className="text-white hover:text-brand-yellow font-medium">Contact</Link>
           {user && (
             <Link to="/my-bookings" className="text-white hover:text-brand-yellow font-medium">My Bookings</Link>
           )}
@@ -64,6 +65,7 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-brand-black border-t border-white/10 px-4 py-3 flex flex-col gap-3 text-sm">
           <Link to="/" onClick={() => setOpen(false)} className="text-white">Home</Link>
+          <Link to="/contact" onClick={() => setOpen(false)} className="text-white">Contact</Link>
           {user && (
             <Link to="/my-bookings" onClick={() => setOpen(false)} className="text-white">My Bookings</Link>
           )}
