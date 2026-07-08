@@ -76,7 +76,7 @@ export default function Home() {
 
           <div className="flex items-center justify-center">
             <img
-              src="/busphoto.jpeg"
+              src="/busphoto3.jpg"
               alt="Metro Air Bus VIP Sofa bus exterior"
               className="w-full max-w-md rounded-2xl shadow-xl border-4 border-white/40 object-cover aspect-[4/3]"
             />
