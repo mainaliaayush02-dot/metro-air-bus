@@ -25,10 +25,10 @@ function matchesFilter(status, filter) {
 }
 
 function seatAppearance(status, isSelected) {
-  if (isSelected) return { shape: 'bg-brand-yellow border-brand-yellow-dark', arm: 'bg-brand-yellow-dark', text: 'text-brand-black' }
-  if (status === 'booked') return { shape: 'bg-gray-400 border-gray-400', arm: 'bg-gray-400', text: 'text-white' }
-  if (status === 'operator_hold') return { shape: 'bg-gold-trim border-gold-trim', arm: 'bg-gold-trim', text: 'text-white' }
-  return { shape: 'bg-white border-green-600', arm: 'border-2 border-green-600 bg-white', text: 'text-green-700' }
+  if (isSelected) return 'bg-brand-yellow text-brand-black'
+  if (status === 'booked') return 'bg-gray-400 text-white'
+  if (status === 'operator_hold') return 'bg-gold-trim text-white'
+  return 'bg-blue-600 text-white hover:bg-blue-700'
 }
 
 function Seat({ seatId, status, isSelected, price, onClick, dimmed, mode }) {
@@ -36,7 +36,6 @@ function Seat({ seatId, status, isSelected, price, onClick, dimmed, mode }) {
     status === 'booked' ? `Seat ${seatId} is already booked`
       : status === 'operator_hold' ? `Seat ${seatId} is on hold`
       : `Seat ${seatId} - Rs. ${price}`
-  const { shape, arm, text } = seatAppearance(status, isSelected)
   const disabled = mode === 'admin-hold' ? status === 'booked' : status !== 'available' && !isSelected
 
   return (
@@ -45,18 +44,9 @@ function Seat({ seatId, status, isSelected, price, onClick, dimmed, mode }) {
       title={title}
       onClick={onClick}
       disabled={disabled}
-      className={`flex flex-col items-center ${dimmed ? 'opacity-30 pointer-events-none' : ''}`}
+      className={`flex h-12 w-16 items-center justify-center rounded-lg text-xs font-bold transition-colors disabled:cursor-not-allowed ${seatAppearance(status, isSelected)} ${dimmed ? 'opacity-30 pointer-events-none' : ''}`}
     >
-      <span className="relative flex items-end">
-        <span className={`absolute -left-1 bottom-0.5 h-4 w-2 rounded-full ${arm}`} />
-        <span className={`absolute -right-1 bottom-0.5 h-4 w-2 rounded-full ${arm}`} />
-        <span
-          className={`relative flex h-11 w-11 items-center justify-center rounded-t-2xl rounded-b-md border-2 text-xs font-bold transition-colors ${shape} ${text}`}
-        >
-          {seatId}
-        </span>
-      </span>
-      <span className="mt-1 text-[10px] text-gray-500">Rs. {price}</span>
+      {seatId}
     </button>
   )
 }
@@ -152,8 +142,8 @@ export default function SeatMap({ scheduleId, price, mode = 'booking', onProceed
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-md p-4 sm:p-6 pb-24 md:pb-6">
           <div className="flex justify-end mb-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-400">
-              <ShipWheel size={24} />
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-yellow text-brand-black shadow">
+              <ShipWheel size={22} />
             </div>
           </div>
 
@@ -201,10 +191,10 @@ export default function SeatMap({ scheduleId, price, mode = 'booking', onProceed
           </div>
 
           <div className="flex flex-wrap gap-4 mt-6 pt-4 border-t border-gray-200 text-xs text-gray-600">
-            <LegendDot className="bg-white border-green-600" label="Available" />
-            <LegendDot className="bg-brand-yellow border-brand-yellow-dark" label="Selected" />
-            <LegendDot className="bg-gray-400 border-gray-400" label="Booked" />
-            <LegendDot className="bg-gold-trim border-gold-trim" label="Operator Hold" />
+            <LegendDot className="bg-blue-600" label="Available" />
+            <LegendDot className="bg-brand-yellow" label="Selected" />
+            <LegendDot className="bg-gray-400" label="Booked" />
+            <LegendDot className="bg-gold-trim" label="Operator Hold" />
           </div>
         </div>
       </div>
@@ -257,7 +247,7 @@ export default function SeatMap({ scheduleId, price, mode = 'booking', onProceed
 function LegendDot({ className, label }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className={`inline-block h-3 w-3 rounded border ${className}`} />
+      <span className={`inline-block h-3 w-3 rounded ${className}`} />
       {label}
     </div>
   )
