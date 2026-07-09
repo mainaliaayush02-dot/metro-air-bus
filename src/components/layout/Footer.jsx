@@ -35,8 +35,19 @@ export default function Footer() {
           <p className="text-sm text-gray-400 mt-1">Daily departure 03:00 PM</p>
         </div>
       </div>
-      <div className="border-t border-white/10 py-4 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} Metro Air Bus. All rights reserved.
+      <div className="border-t border-white/10 py-4 text-center text-xs text-gray-500 space-y-1">
+        <p>© {new Date().getFullYear()} Metro Air Bus. All rights reserved.</p>
+        <p>
+          Designed and crafted by{' '}
+          <a
+            href="https://www.aayushmainali.me"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand-yellow hover:underline"
+          >
+            Aayush Mainali
+          </a>
+        </p>
       </div>
     </footer>
   )
